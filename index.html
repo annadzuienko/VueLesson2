@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Lection 01.D</title>
+        <meta charset="UTF-8" />
+        <link
+            rel="stylesheet"
+            href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+        />
+        <link
+            rel="stylesheet"
+            href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css"
+        />
+        <link
+            rel="stylesheet"
+            href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css"
+        />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            .bordered {
+                border: 1px solid rebeccapurple;
+                margin: 10px;
+                padding: 15px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app" class="container">
+           <div class="bordered">
+                <textarea v-model="newTask.time">{{newTask.time}}</textarea>
+                <textarea v-model="newTask.title">{{newTask.title}}</textarea>
+                <textarea v-model="newTask.desc">{{newTask.desc}}</textarea>
+               <button @click="addTask">add</button>
+            </div>
+           <div v-for="(task, id) in tasks" key="task.id" class="bordered">
+                <textarea>{{task.time}}</textarea>
+                <textarea>{{task.title}}</textarea>
+                <textarea>{{task.desc}}</textarea>
+                <div class="action">
+                    <span @click="editTask(task)" class="fas fa-pen"></span>
+                    <span @click="removeTask(id)" class="fas fa-trash-alt"></span>
+                </div>
+           </div>
+        </div>
+        <script src="./index.js"></script>
+    </body>
+</html>
+
+<style>
+    .fas {
+        cursor: pointer;
+    }
+    .fas:hover {
+        color: #681489;
+    }
+    .action {
+        display: none;
+    }
+    .bordered:hover .action {
+        display: block;
+    }
+
+</style>
