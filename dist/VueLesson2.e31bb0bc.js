@@ -188,13 +188,6 @@ new Vue({
       desc: ""
     }
   },
-  watch: {
-    value: function value(val) {
-      this.tasks.find(function (t) {
-        return t === val;
-      });
-    }
-  },
   methods: {
     addTask: function addTask() {
       this.tasks.push({
@@ -209,16 +202,8 @@ new Vue({
       this.tasks.splice(id, 1);
     },
     editTask: function editTask(task) {
-      var _this = this;
-
-      this.tasks.find(function (t) {
-        if (t.id === task.id) {
-          t = {
-            time: _this.value.time,
-            title: _this.value.title,
-            desc: _this.value.desc
-          };
-        }
+      this.task = this.tasks.map(function (t) {
+        return t.id === task.id ? task : t;
       });
     }
   }
@@ -251,7 +236,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62645" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49666" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

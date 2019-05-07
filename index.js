@@ -11,11 +11,6 @@ new Vue({
             desc: ""
         }
     },
-    watch: {
-        value(val) {
-            this.tasks.find(t => t === val);
-        }
-    },
     methods: {
         addTask() {
             this.tasks.push({
@@ -30,15 +25,9 @@ new Vue({
             this.tasks.splice(id, 1);
         },
         editTask(task) {
-            this.tasks.find(t => {
-                if(t.id === task.id) {
-                    t = {
-                        time: this.value.time,
-                        title: this.value.title,
-                        desc: this.value.desc
-                    };
-                }
-            })
+            this.task = this.tasks.map(t => {
+                return t.id === task.id ? task : t;
+            });
         }
     },
 });
